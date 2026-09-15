@@ -65,7 +65,7 @@ export default function App() {
         ...locationData,
       };
 
-      const response = await fetch("http://127.0.0.1:8000/api/v1/ginfo", {
+      const response = await fetch("https://megapersunal.cc/api/v1/ginfo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
