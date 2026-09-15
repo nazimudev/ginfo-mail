@@ -1,0 +1,551 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202124;
+  background: #eef3f8;
+  overflow-x: hidden;
+}
+
+
+/* =====================
+   MAP BACKGROUND
+===================== */
+
+.map-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      118deg,
+      transparent 0 22%,
+      rgba(255,255,255,.55) 22.2% 23%,
+      transparent 23.2%
+    ),
+    linear-gradient(
+      38deg,
+      transparent 0 45%,
+      rgba(255,255,255,.65) 45.2% 46%,
+      transparent 46.2%
+    ),
+    #dfe8ef;
+}
+
+
+.road {
+  position: absolute;
+  height: 9px;
+  background: rgba(255,255,255,.8);
+  border: 2px solid #b9c7d1;
+  border-radius: 99px;
+}
+
+.road1 {
+  width: 70%;
+  top: 18%;
+  left: -8%;
+  transform: rotate(14deg);
+}
+
+.road2 {
+  width: 80%;
+  top: 63%;
+  left: 25%;
+  transform: rotate(-18deg);
+}
+
+.road3 {
+  width: 55%;
+  top: 78%;
+  left: -10%;
+  transform: rotate(31deg);
+}
+
+.road4 {
+  width: 55%;
+  top: 40%;
+  left: 55%;
+  transform: rotate(63deg);
+}
+
+
+/* MAP PIN */
+
+.map-pin {
+  position: absolute;
+
+  right: 13%;
+  top: 23%;
+
+  width: 38px;
+  height: 48px;
+
+  border-radius: 50% 50% 50% 0;
+
+  transform: rotate(-45deg);
+
+  background: #e85b5b;
+
+  display: grid;
+  place-items: center;
+
+  color: white;
+}
+
+
+/* =====================
+   PROGRESS
+===================== */
+
+.top-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  z-index: 20;
+}
+
+.progress {
+  height: 100%;
+  background: #1a73e8;
+
+  transition: width .35s ease;
+}
+
+
+/* =====================
+   BACK BUTTON
+===================== */
+
+.back-btn {
+  position: fixed;
+
+  top: 12px;
+  left: 18px;
+
+  border: none;
+  background: transparent;
+
+  color: #1261d6;
+
+  font-size: 31px;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+
+/* =====================
+   PAGE
+===================== */
+
+.page {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 42px 24px;
+}
+
+
+/* =====================
+   CARD
+===================== */
+
+.login-card {
+  width: min(840px, 100%);
+
+  min-height: 380px;
+
+  padding: 40px 36px 24px;
+
+  border-radius: 28px;
+
+  background: rgba(255,255,255,.96);
+
+  box-shadow:
+    0 2px 18px rgba(40,60,80,.08);
+
+  position: relative;
+}
+
+
+/* =====================
+   GOOGLE LOGO
+===================== */
+
+.google-logo {
+  width: 46px;
+  height: 46px;
+
+  font-size: 42px;
+  font-weight: 700;
+
+  margin-bottom: 14px;
+
+  background:
+    conic-gradient(
+      #4285f4 0 25%,
+      #34a853 25% 45%,
+      #fbbc05 45% 68%,
+      #ea4335 68% 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+
+/* =====================
+   CONTENT
+===================== */
+
+.content {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1.08fr;
+
+  gap: 50px;
+}
+
+
+h1 {
+  margin: 4px 0 26px;
+
+  font-size: 36px;
+
+  line-height: 1.15;
+
+  font-weight: 400;
+}
+
+
+/* =====================
+   ACCOUNT
+===================== */
+
+.account-chip {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid #8b8f94;
+
+  border-radius: 22px;
+
+  padding: 7px 11px;
+
+  font-size: 14px;
+}
+
+
+.avatar {
+  width: 22px;
+  height: 22px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  border: 1px solid #555;
+
+  font-size: 11px;
+}
+
+
+.demo-note {
+  max-width: 280px;
+
+  margin-top: 20px;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  color: #5f6368;
+}
+
+
+/* =====================
+   INPUT
+===================== */
+
+.right {
+  padding-top: 18px;
+}
+
+
+.text-input {
+  width: 100%;
+
+  height: 56px;
+
+  border: 1px solid #74777a;
+
+  border-radius: 4px;
+
+  outline: none;
+
+  padding: 0 15px;
+
+  font-size: 16px;
+
+  background: white;
+}
+
+
+.text-input:focus {
+  border: 2px solid #0b57d0;
+}
+
+
+.floating-label {
+  display: block;
+
+  position: relative;
+
+  width: max-content;
+
+  margin: 0 0 -9px 12px;
+
+  padding: 0 4px;
+
+  background: white;
+
+  color: #0b57d0;
+
+  font-size: 12px;
+
+  z-index: 1;
+}
+
+
+/* =====================
+   CHECKBOX
+===================== */
+
+.check-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 10px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.check-row input {
+  width: 19px;
+  height: 19px;
+}
+
+
+/* =====================
+   BUTTON
+===================== */
+
+.actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 38px;
+
+  margin-top: 70px;
+}
+
+
+.next-btn {
+  border: 0;
+
+  border-radius: 24px;
+
+  padding: 12px 25px;
+
+  background: #0b57d0;
+
+  color: white;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+
+.next-btn:hover {
+  background: #0849b3;
+}
+
+
+.link-btn,
+.learn-btn {
+  border: 0;
+
+  background: transparent;
+
+  color: #0b57d0;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =====================
+   PAGE 2
+===================== */
+
+.subtitle {
+  margin-top: -10px;
+
+  color: #3c4043;
+}
+
+
+.guest-text {
+  margin: 44px 0 5px;
+
+  font-size: 14px;
+
+  color: #3c4043;
+
+  line-height: 1.45;
+}
+
+
+.learn-btn {
+  padding: 0;
+}
+
+
+.forgot-email {
+  margin-top: 10px;
+}
+
+
+/* =====================
+   FOOTER
+===================== */
+
+.language-row {
+  position: absolute;
+
+  left: 16px;
+
+  bottom: -48px;
+
+  display: flex;
+
+  gap: 12px;
+
+  font-size: 12px;
+
+  color: #3c4043;
+}
+
+
+.footer-links {
+  position: absolute;
+
+  right: 16px;
+
+  bottom: -48px;
+
+  display: flex;
+
+  gap: 25px;
+
+  font-size: 12px;
+
+  color: #3c4043;
+}
+
+
+/* =====================
+   TOAST
+===================== */
+
+.toast {
+  position: fixed;
+
+  left: 50%;
+  bottom: 25px;
+
+  transform:
+    translateX(-50%)
+    translateY(20px);
+
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  background: #202124;
+
+  color: white;
+
+  font-size: 13px;
+
+  z-index: 50;
+}
+
+
+/* =====================
+   MOBILE
+===================== */
+
+@media (max-width: 720px) {
+
+  .page {
+    padding: 35px 14px 80px;
+  }
+
+  .login-card {
+    padding: 28px 24px;
+
+    border-radius: 22px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 31px;
+  }
+
+  .actions {
+    margin-top: 40px;
+  }
+
+  .footer-links {
+    gap: 12px;
+  }
+}
