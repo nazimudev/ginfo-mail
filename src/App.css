@@ -549,3 +549,13 @@ h1 {
     gap: 12px;
   }
 }
+
+.input-error {
+  border: 1px solid #d93025;
+}
+
+.error-text {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: 6px;
+}
